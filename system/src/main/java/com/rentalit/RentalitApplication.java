@@ -10,3 +10,4 @@ public class RentalitApplication {
 		SpringApplication.run(RentalitApplication.class, args);
 	}
 }
+
