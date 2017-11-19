@@ -33,17 +33,17 @@ public class RentalitApplication {
 
 		MongoClient mongoClient = new MongoClient();
 
-		MongoDatabase database = mongoClient.getDatabase("dummydb");
+		MongoDatabase database = mongoClient.getDatabase("dummydb"); //connect db
 
-		MongoCollection<Document> collection = database.getCollection("mycollection");
+		MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
 
-		Document doc = new Document("name", "MongoDB")
+		Document doc = new Document("name", "MongoDB") //document to insert
 				.append("type", "database")
 				.append("count", 1)
 				.append("versions", Arrays.asList("v3.2", "v3.0", "v2.6"))
 				.append("info", new Document("x", 203).append("y", 102));
 
-		collection.insertOne(doc);
+		collection.insertOne(doc); //insert into collection
 
 		System.out.println(collection.count());
 
@@ -51,7 +51,7 @@ public class RentalitApplication {
 
 		System.out.println(myDoc.toJson());
 
-		collection.deleteOne(eq("name", "MongoDB"));
+		collection.deleteOne(eq("name", "MongoDB")); //delete after insert
 
 		System.out.println(collection.count());
 
