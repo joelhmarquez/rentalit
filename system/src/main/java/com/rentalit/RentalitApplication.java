@@ -31,29 +31,13 @@ public class RentalitApplication {
 
 		SpringApplication.run(RentalitApplication.class, args);
 
-		MongoClient mongoClient = new MongoClient();
-
-		MongoDatabase database = mongoClient.getDatabase("dummydb"); //connect db
-
-		MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
-
-		Document doc = new Document("name", "MongoDB") //document to insert
-				.append("type", "database")
-				.append("count", 1)
-				.append("versions", Arrays.asList("v3.2", "v3.0", "v2.6"))
-				.append("info", new Document("x", 203).append("y", 102));
-
-		collection.insertOne(doc); //insert into collection
-
-		System.out.println(collection.count());
-
-		Document myDoc = collection.find(eq("name", "MongoDB")).first();
-
-		System.out.println(myDoc.toJson());
-
-		collection.deleteOne(eq("name", "MongoDB")); //delete after insert
-
-		System.out.println(collection.count());
+		mongo_DB test = new mongo_DB("Roller blades","RollerBlades",0,"fun");
+		System.out.println(test.getDescription());
+		test.setDescription("This is roller blades");
+		test.setProduct_Name("RollerBlades");
+		test.setType("FUN");
+		test.setRented(0);
+		test.add_Listing(test.getProduct_Name(),test.getType(),test.getDescription(),test.getRented());
 
 	}
 
