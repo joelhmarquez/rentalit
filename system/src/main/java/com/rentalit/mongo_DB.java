@@ -28,12 +28,6 @@ public class mongo_DB {
     private Integer rented;
     private String type;
 
-    public mongo_DB(String product_Name,String description,Integer rented, String type){
-        this.product_Name = product_Name;
-        this.description = description;
-        this.rented = rented;
-        this.type = type;
-    }
     public String getType() {
         return type;
     }
@@ -80,7 +74,7 @@ public class mongo_DB {
 
         collection.insertOne(doc); //insert into collection
 
-        System.out.println(collection.count());
+        //System.out.println(collection.count());
 
         //Document myDoc = collection.find(eq("product_name", product_Name)).first();
 

@@ -31,8 +31,7 @@ public class RentalitApplication {
 
 		SpringApplication.run(RentalitApplication.class, args);
 
-		mongo_DB test = new mongo_DB("Roller blades","RollerBlades",0,"fun");
-		System.out.println(test.getDescription());
+		mongo_DB test = new mongo_DB();
 		test.setDescription("This is roller blades");
 		test.setProduct_Name("RollerBlades");
 		test.setType("FUN");
