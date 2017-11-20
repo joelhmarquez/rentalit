@@ -11,7 +11,7 @@ import com.rentalit.models.MongoDB;
 public class RentalitController {
 
     @GetMapping("/post")
-    public String listingForm( Model model) {
+    public String listingForm(Model model) {
         model.addAttribute("listing", new Listing());
         return "post";
     }
@@ -22,5 +22,4 @@ public class RentalitController {
         mongoDB.addListing(listing);
         return "result";
     }
-
 }
