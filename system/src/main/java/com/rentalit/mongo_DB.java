@@ -26,14 +26,14 @@ public class mongo_DB {
     private String product_Name;
     private String description;
     private Integer rented;
-    private String type;
+    private String condition;
 
-    public String getType() {
-        return type;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public Integer getRented() {
@@ -59,7 +59,7 @@ public class mongo_DB {
     public void setRented(Integer rented) {
         this.rented = rented;
     }
-    public void add_Listing(String product_Name, String type, String description, Integer rented){
+    public void add_Listing(String product_Name, String condition, String description, Integer rented){
         MongoClient mongoClient = new MongoClient();
 
 
@@ -68,7 +68,7 @@ public class mongo_DB {
         MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
 
         Document doc = new Document("product_Name", product_Name) //document to insert
-                .append("type", type)
+                .append("condition", condition)
                 .append("description", description)
                 .append("isRented", rented);
 
