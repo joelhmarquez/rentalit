@@ -59,6 +59,8 @@ public class mongo_DB {
     public void setRented(Integer rented) {
         this.rented = rented;
     }
+
+
     public void add_Listing(String product_Name, String condition, String description, Integer rented){
         MongoClient mongoClient = new MongoClient();
 
@@ -74,7 +76,7 @@ public class mongo_DB {
 
         collection.insertOne(doc); //insert into collection
 
-        //System.out.println(collection.count());
+        System.out.println(collection.count());
 
         //Document myDoc = collection.find(eq("product_name", product_Name)).first();
 
