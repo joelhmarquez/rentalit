@@ -49,7 +49,7 @@ public class RentalitApplication {
 //		test.setProductName(product);
 //		test.setCondition(condition);
 //		test.setRented(0);
-//		test.add_Listing(test.getProductName(),test.getCondition(),test.getDescription(),test.getRented());
+//		test.addListing(test.getProductName(),test.getCondition(),test.getDescription(),test.getRented());
 
 	}
 

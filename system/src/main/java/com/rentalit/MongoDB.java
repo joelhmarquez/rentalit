@@ -22,9 +22,10 @@ import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mongo_DB {
+public class MongoDB {
 
-    public void add_Listing(String product_Name, String condition, String description, Integer rented){
+    public void addListing(Listing listing){
+
         MongoClient mongoClient = new MongoClient();
 
 
@@ -32,10 +33,10 @@ public class mongo_DB {
 
         MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
 
-        Document doc = new Document("product_Name", product_Name) //document to insert
-                .append("condition", condition)
-                .append("description", description)
-                .append("isRented", rented);
+        Document doc = new Document("product_Name", listing.getProductName()) //document to insert
+                .append("condition", listing.getCondition())
+                .append("description", listing.getDescription())
+                .append("isRented", listing.getRented());
 
         collection.insertOne(doc); //insert into collection
 

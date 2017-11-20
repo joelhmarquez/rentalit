@@ -15,6 +15,8 @@ public class RentalitController {
 
     @PostMapping("/post")
     public String listingSubmit(@ModelAttribute Listing listing) {
+        MongoDB mongoDB = new MongoDB();
+        mongoDB.addListing(listing);
         return "result";
     }
 
