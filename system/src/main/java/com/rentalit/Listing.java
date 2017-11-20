@@ -5,12 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 public class Listing {
+
+    public enum Conditions {BAD, USED , GOOD, NEW}
     private String productName;
     private String description;
     private Integer rented;
-    private String condition;
+    private Conditions condition;
 
-    public String getCondition() {
+    public Conditions getCondition() {
         return condition;
     }
 
@@ -26,7 +28,7 @@ public class Listing {
         return productName;
     }
 
-    public void setCondition(String condition) {
+    public void setCondition(Conditions condition) {
         this.condition = condition;
     }
 
