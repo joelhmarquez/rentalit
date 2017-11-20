@@ -21,6 +21,7 @@ import static com.mongodb.client.model.Updates.*;
 import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 
@@ -31,29 +32,24 @@ public class RentalitApplication {
 
 		SpringApplication.run(RentalitApplication.class, args);
 
-		MongoClient mongoClient = new MongoClient();
+		mongo_DB test = new mongo_DB();
 
-		MongoDatabase database = mongoClient.getDatabase("dummydb"); //connect db
 
-		MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
+		System.out.println("Enter your Product: ");
+        Scanner scanner = new Scanner(System.in);
+        String product = scanner.nextLine();
+        System.out.println("Enter the Description: ");
+        String description = scanner.nextLine();
+        System.out.println("What is the condition: ");
+        String condition = scanner.nextLine();
 
-		Document doc = new Document("name", "MongoDB") //document to insert
-				.append("type", "database")
-				.append("count", 1)
-				.append("versions", Arrays.asList("v3.2", "v3.0", "v2.6"))
-				.append("info", new Document("x", 203).append("y", 102));
+        
 
-		collection.insertOne(doc); //insert into collection
-
-		System.out.println(collection.count());
-
-		Document myDoc = collection.find(eq("name", "MongoDB")).first();
-
-		System.out.println(myDoc.toJson());
-
-		collection.deleteOne(eq("name", "MongoDB")); //delete after insert
-
-		System.out.println(collection.count());
+        test.setDescription(description);
+		test.setProduct_Name(product);
+		test.setCondition(condition);
+		test.setRented(0);
+		test.add_Listing(test.getProduct_Name(),test.getCondition(),test.getDescription(),test.getRented());
 
 	}
 
