@@ -1,5 +1,4 @@
-package com.rentalit;
-
+package com.rentalit.resources;
 
 public class validator {
     public Boolean isValid(String productName, String Description, String condition) {

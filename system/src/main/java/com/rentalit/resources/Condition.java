@@ -1,4 +1,4 @@
-package com.rentalit;
+package com.rentalit.resources;
 
 public enum Condition {
 	NEW,

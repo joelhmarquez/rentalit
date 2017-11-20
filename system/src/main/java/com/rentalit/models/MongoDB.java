@@ -1,4 +1,4 @@
-package com.rentalit;
+package com.rentalit.models;
 
 import com.mongodb.MongoClient;
 
