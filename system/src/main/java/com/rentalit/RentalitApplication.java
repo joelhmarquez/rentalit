@@ -46,10 +46,10 @@ public class RentalitApplication {
 //
 //
 //        test.setDescription(description);
-//		test.setProduct_Name(product);
+//		test.setProductName(product);
 //		test.setCondition(condition);
 //		test.setRented(0);
-//		test.add_Listing(test.getProduct_Name(),test.getCondition(),test.getDescription(),test.getRented());
+//		test.add_Listing(test.getProductName(),test.getCondition(),test.getDescription(),test.getRented());
 
 	}
 

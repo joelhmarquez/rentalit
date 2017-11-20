@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 public class Listing {
-    private String product_Name;
+    private String productName;
     private String description;
     private Integer rented;
     private String condition;
@@ -22,8 +22,8 @@ public class Listing {
         return description;
     }
 
-    public String getProduct_Name() {
-        return product_Name;
+    public String getProductName() {
+        return productName;
     }
 
     public void setCondition(String condition) {
@@ -34,8 +34,8 @@ public class Listing {
         this.description = description;
     }
 
-    public void setProduct_Name(String product_Name) {
-        this.product_Name = product_Name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public void setRented(Integer rented) {

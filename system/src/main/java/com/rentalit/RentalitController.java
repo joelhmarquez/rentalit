@@ -2,16 +2,20 @@ package com.rentalit;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RentalitController {
 
-    @RequestMapping("/post")
-    public String greeting(@RequestParam(value="username", required=false, defaultValue="anonymous") String name, Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("/post")
+    public String listingForm( Model model) {
+        model.addAttribute("listing", new Listing());
         return "post";
+    }
+
+    @PostMapping("/post")
+    public String listingSubmit(@ModelAttribute Listing listing) {
+        return "result";
     }
 
 }
