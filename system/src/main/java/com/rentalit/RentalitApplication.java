@@ -32,28 +32,24 @@ public class RentalitApplication {
 
 		SpringApplication.run(RentalitApplication.class, args);
 
-		mongo_DB test = new mongo_DB();
-
-
-		System.out.println("Enter your Product: ");
-        Scanner scanner = new Scanner(System.in);
-        String product = scanner.nextLine();
-        System.out.println("Enter the Description: ");
-        String description = scanner.nextLine();
-        System.out.println("What is the condition: (BAD, USED, GOOD, NEW)");
-        String condition = scanner.nextLine();
-        validator val = new validator();
-        if(val.isValid(product,description,condition)) {
-            test.setDescription(description);
-            test.setProduct_Name(product);
-            test.setConditions(mongo_DB.Conditions.valueOf(condition));
-            test.setRented(0);
-            test.add_Listing(test.getProduct_Name(), test.getConditions().toString(), test.getDescription(), test.getRented());
-        }else{
-            System.out.println("Your output doesnt fit our requirments, please reenter: ");
-
-        }
-
+//		mongo_DB test = new mongo_DB();
+//
+//
+//		System.out.println("Enter your Product: ");
+//        Scanner scanner = new Scanner(System.in);
+//        String product = scanner.nextLine();
+//        System.out.println("Enter the Description: ");
+//        String description = scanner.nextLine();
+//        System.out.println("What is the condition: ");
+//        String condition = scanner.nextLine();
+//
+//
+//
+//        test.setDescription(description);
+//		test.setProductName(product);
+//		test.setCondition(condition);
+//		test.setRented(0);
+//		test.addListing(test.getProductName(),test.getCondition(),test.getDescription(),test.getRented());
 	}
 
 }
