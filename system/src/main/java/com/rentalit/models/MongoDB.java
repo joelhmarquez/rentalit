@@ -5,12 +5,14 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 
+import com.rentalit.error.InvalidListingException;
+import com.rentalit.resources.Validator;
 import org.bson.Document;
 
 
 public class MongoDB {
 	
-    public void addListing(Listing listing){
+    public void addListing(Listing listing) throws InvalidListingException{
 
         MongoClient mongoClient = new MongoClient();
         
@@ -19,11 +21,13 @@ public class MongoDB {
         MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
 
         Document doc = new Document("product_Name", listing.getProductName()) //document to insert
-                .append("condition", listing.getCondition())
+                .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
                 .append("isRented", listing.getRented());
 
-        collection.insertOne(doc); //insert into collection
+        Validator.validate(listing.getProductName(),listing.getDescription(),listing.getCondition().toString());
+        collection.insertOne(doc);//insert into collection
+
 
         System.out.println(collection.count());
 

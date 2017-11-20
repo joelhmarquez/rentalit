@@ -1,5 +1,7 @@
 package com.rentalit.controllers;
 
+import com.rentalit.error.InvalidListingException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +27,13 @@ public class RentalitController {
 //    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createListing")
-    ResponseEntity<?> createListing(@RequestBody Listing listing) {
+    public ResponseEntity<?> createListing(@RequestBody Listing listing) {
         try {
-
-        } catch (Error e) {
-
+            MongoDB mongo = new MongoDB();
+            mongo.addListing(listing);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (InvalidListingException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
 }
