@@ -23,17 +23,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mongo_DB {
+    public enum Conditions {BAD, USED , GOOD, NEW}
     private String product_Name;
     private String description;
     private Integer rented;
-    private String condition;
+    private Conditions condition;
 
-    public String getCondition() {
+    public Conditions getConditions() {
         return condition;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setConditions(Conditions input ) {
+        condition = input;
     }
 
     public Integer getRented() {
