@@ -5,12 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
-    <p>Name: <input type="text" th:field="*{productName}" required/></p>
-    <p>Description: <input type="text" th:field="*{description}" required/></p>
+<h1 style="text-align: center">Form</h1>
+<form style="text-align: center" action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
+    <p style="text-align: center">Name: <input type="text" th:field="*{productName}" required/></p>
+    <p style="text-align: center">Description: <input type="text" th:field="*{description}" required/></p>
 
-    <p>Condition:
+    <p style="text-align: center">Condition:
         <select th:field="*{condition}" required>
             <option value="GOOD">Good</option>
             <option value="BAD">Bad</option>
@@ -19,7 +19,7 @@
         </select>
     </p>
 
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
 </html>

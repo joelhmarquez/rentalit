@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Result</h1>
-<p th:text="'Name: ' + ${listing.productName}" />
-<p th:text="'Description: ' + ${listing.description}" />
-<p th:text="'Condition: ' + ${listing.condition}" />
-<a href="/post">Submit another message</a>
+<h1 style="text-align: center">Success!</h1>
+<p style="text-align: center" th:text="'Product Name: ' + ${listing.productName}" />
+<p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+<p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+<a  href="/post" style="text-align: center" >Submit another message</a>
 </body>
 </html>
