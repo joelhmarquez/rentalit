@@ -1,8 +1,5 @@
 package com.rentalit.models;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.rentalit.resources.Condition;
 
 
@@ -11,13 +8,10 @@ public class Listing {
     private String description;
     private Integer rented;
     private Condition condition;
-    public Listing(){}
-//    public Listing(String productName, String description, Integer rented, Condition condition){
-//        this.rented = 0;
-//        this.productName = productName;
-//        this.description = description;
-//        this.condition = condition;
-//    }
+    
+    public Listing(){
+    	
+    }
 
     public Condition getCondition() {
         return condition;

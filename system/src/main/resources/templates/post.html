@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/post}" th:object="${listing}" method="post">
+<form action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
     <p>Name: <input type="text" th:field="*{productName}" /></p>
     <p>Description: <input type="text" th:field="*{description}" /></p>
     <p>Condition: <input type="text" th:field="*{condition}" /></p>

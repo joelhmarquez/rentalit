@@ -1,6 +1,9 @@
 package com.rentalit.controllers;
 
 import com.rentalit.error.InvalidListingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,27 +15,22 @@ import com.rentalit.models.MongoDB;
 
 @Controller
 public class RentalitController {
+	
+	static Logger log = LoggerFactory.getLogger(RentalitController.class);
 
-//    @GetMapping("/post")
-//    public String listingForm( Model model) {
-//        model.addAttribute("listing", new Listing());
-//        return "post";
-//    }
-//
-//    @PostMapping("/post")
-//    public String listingSubmit(@ModelAttribute Listing listing) {
-//        MongoDB mongoDB = new MongoDB();
-//        mongoDB.addListing(listing);
-//        return "result";
-//    }
+    @GetMapping("/post")
+    public void listingForm( Model model) {
+        model.addAttribute("listing", new Listing());
+    }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/createListing")
+	@PostMapping("/createListing")
     public ResponseEntity<?> createListing(@RequestBody Listing listing) {
         try {
             MongoDB mongo = new MongoDB();
-            mongo.addListing(listing);
-            return new ResponseEntity<>(HttpStatus.OK);
+            mongo.addListing(listing);            
+            return new ResponseEntity<>(HttpStatus.OK);        
         } catch (InvalidListingException e) {
+        		log.error("Unable to create posting", e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
