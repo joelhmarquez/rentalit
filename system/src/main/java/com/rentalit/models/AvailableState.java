@@ -1,23 +1,23 @@
 package com.rentalit.models;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
+@Configurable
 public class AvailableState implements ProductState{
 
 	@Override
-	public void acceptRental() {
-		// TODO Auto-generated method stub
-		
+	public void acceptRental(Listing listing) {
+		listing.setCurrentState(listing.getRentedState());
 	}
 	
 	@Override
-	public void requestRental() {
+	public void requestRental(Listing listing) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void returnRental() {
-		// TODO Auto-generated method stub
-		
+	public void returnRental(Listing listing) {
+		listing.setCurrentState(listing.getAvailableState());
 	}
 
 }
