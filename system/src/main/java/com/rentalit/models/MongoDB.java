@@ -36,7 +36,7 @@ public class MongoDB {
         Document doc = new Document("product_Name", listing.getProductName()) //document to insert
                 .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
-                .append("isRented", listing.getRented());
+                .append("isRented", 0);
 
         Validator.validate(listing.getProductName(),listing.getDescription(),listing.getCondition().toString());
         collection.insertOne(doc);//insert into collection
