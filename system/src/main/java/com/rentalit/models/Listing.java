@@ -3,7 +3,7 @@ package com.rentalit.models;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rentalit.resources.Condition;
-
+import java.sql.Date;
 
 public class Listing {
 	private String _id;

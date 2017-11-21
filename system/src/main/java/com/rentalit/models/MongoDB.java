@@ -16,6 +16,9 @@ import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.lang.model.type.NullType;
+import javax.print.Doc;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,10 +36,7 @@ public class MongoDB {
 
         MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
 
-        Document doc = new Document("product_Name", listing.getProductName()) //document to insert
-                .append("condition", listing.getCondition().toString())
-                .append("description", listing.getDescription())
-                .append("isRented", 0);
+        Document doc = mongo_Query(listing);
 
         Validator.validate(listing.getProductName(),listing.getDescription(),listing.getCondition().toString());
         collection.insertOne(doc);//insert into collection
@@ -48,6 +48,16 @@ public class MongoDB {
 		//collection.deleteOne(eq("name", "MongoDB")); //delete after insert
 
     }
+    public Document mongo_Query(Listing listing){
+        Document doc = new Document("product_Name", listing.getProductName()) //document to insert
+                .append("condition", listing.getCondition().toString())
+                .append("description", listing.getDescription())
+                .append("isRented", 0)
+                .append("startDate", "")
+                .append("endDate","");
+        return doc;
+    }
+
     public List<Document> search_Item(Document query){
 
         MongoClient mongoClient = new MongoClient();
@@ -66,7 +76,7 @@ public class MongoDB {
             results.add(docs);
         }
         if(results.isEmpty()) {
-            log.error("FUCK");
+            log.error("results are empty");
         }
         return results;
     }
