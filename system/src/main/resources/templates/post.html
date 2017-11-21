@@ -7,9 +7,18 @@
 <body>
 <h1>Form</h1>
 <form action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
-    <p>Name: <input type="text" th:field="*{productName}" /></p>
-    <p>Description: <input type="text" th:field="*{description}" /></p>
-    <p>Condition: <input type="text" th:field="*{condition}" /></p>
+    <p>Name: <input type="text" th:field="*{productName}" required/></p>
+    <p>Description: <input type="text" th:field="*{description}" required/></p>
+
+    <p>Condition:
+        <select th:field="*{condition}" required>
+            <option value="GOOD">Good</option>
+            <option value="BAD">Bad</option>
+            <option value="NEW">New</option>
+            <option value="USED">Used</option>
+        </select>
+    </p>
+
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>

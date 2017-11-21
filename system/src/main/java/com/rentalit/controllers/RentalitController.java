@@ -24,14 +24,16 @@ public class RentalitController {
     }
 
 	@PostMapping("/createListing")
-    public ResponseEntity<?> createListing(@RequestBody Listing listing) {
+    public String createListing(@ModelAttribute Listing listing) {
         try {
             MongoDB mongo = new MongoDB();
             mongo.addListing(listing);            
-            return new ResponseEntity<>(HttpStatus.OK);        
+            return "result";
+
         } catch (InvalidListingException e) {
         		log.error("Unable to create posting", e);
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        		return "Unable to create posting.";
+
         }
     }
 }
