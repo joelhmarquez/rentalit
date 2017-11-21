@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rentalit.resources.Condition;
-
+import java.sql.Date;
 
 public class Listing {
 	private String id;
