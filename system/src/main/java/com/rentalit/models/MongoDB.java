@@ -1,14 +1,24 @@
 package com.rentalit.models;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
+
+import com.mongodb.DBCursor;
+
 import com.rentalit.error.InvalidListingException;
 import com.rentalit.resources.Validator;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 public class MongoDB {
@@ -37,6 +47,28 @@ public class MongoDB {
 
 		//collection.deleteOne(eq("name", "MongoDB")); //delete after insert
 
+    }
+    public List<Document> search_Item(Document query){
+
+        MongoClient mongoClient = new MongoClient();
+
+        MongoDatabase database = mongoClient.getDatabase("dummydb"); //connect db
+
+        MongoCollection<Document> collection = database.getCollection("mycollection");
+        FindIterable<Document> doc = collection.find(query);
+        List<Document> results = new ArrayList<>();
+
+//        if (doc == ) {
+//            log.error("NO ITEMS");
+//        }
+
+        for(Document docs : doc) {
+            results.add(docs);
+        }
+        if(results.isEmpty()) {
+            log.error("FUCK");
+        }
+        return results;
     }
     @Override
     public String toString() {
