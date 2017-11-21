@@ -1,12 +1,13 @@
 package com.rentalit.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rentalit.resources.Condition;
 
 
 public class Listing {
-	private String _id;
+	private String id;
     private String productName;
     private String description;
     private Integer rented;
@@ -21,12 +22,17 @@ public class Listing {
     	
     }
     
-    public String get_Id() {
-		return this._id;
+    public String getId() {
+		return this.id;
 	}
 
-	public void set_Id(String _id) {
-		this._id = _id;
+	public void set_Id(String id) {
+		this.id = id;
+	}
+	
+	@JsonProperty("_id")
+	private void unpackNameFromNestedObject(Map<String, String> idObj) {
+	    this.id = idObj.get("$oid");
 	}
 
     public Condition getCondition() {
@@ -41,6 +47,7 @@ public class Listing {
         return description;
     }
 
+    @JsonProperty("product_Name")
     public String getProductName() {
         return productName;
     }
@@ -56,6 +63,7 @@ public class Listing {
         this.productName = productName;
     }
 
+    @JsonProperty("isRented")
     public void setRented(Integer rented) {
         this.rented = rented;
         if(this.rented == 1) {
@@ -93,6 +101,5 @@ public class Listing {
 	public void ReturnRental() {
 		this.currentState.requestRental(this);
 	}
-
 }
 

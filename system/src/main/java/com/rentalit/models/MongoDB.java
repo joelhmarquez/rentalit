@@ -1,5 +1,6 @@
 package com.rentalit.models;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class MongoDB {
 	static Logger log = LoggerFactory.getLogger(MongoDB.class);
+	ObjectMapper objectMapper = new ObjectMapper();
 	
     public void addListing(Listing listing) throws InvalidListingException{
     		log.info("Adding post to database: ", listing);
@@ -48,7 +50,7 @@ public class MongoDB {
 		//collection.deleteOne(eq("name", "MongoDB")); //delete after insert
 
     }
-    public List<Document> search_Item(Document query){
+    public List<Listing> search_Item(Document query){
 
         MongoClient mongoClient = new MongoClient();
 
@@ -56,14 +58,18 @@ public class MongoDB {
 
         MongoCollection<Document> collection = database.getCollection("mycollection");
         FindIterable<Document> doc = collection.find(query);
-        List<Document> results = new ArrayList<>();
+        List<Listing> results = new ArrayList<>();
 
 //        if (doc == ) {
 //            log.error("NO ITEMS");
 //        }
 
         for(Document docs : doc) {
-            results.add(docs);
+        		try {
+        			results.add(objectMapper.readValue(docs.toJson(), Listing.class));
+        		} catch(Exception e) {
+        			log.error("Unable to deserialize listing json", e);
+        		}
         }
         if(results.isEmpty()) {
             log.error("FUCK");

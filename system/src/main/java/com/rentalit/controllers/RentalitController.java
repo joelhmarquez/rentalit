@@ -2,6 +2,9 @@ package com.rentalit.controllers;
 
 import com.rentalit.error.InvalidListingException;
 
+import java.util.List;
+
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,7 @@ import com.rentalit.models.MongoDB;
 public class RentalitController {
 	
 	static Logger log = LoggerFactory.getLogger(RentalitController.class);
+	MongoDB mongo = new MongoDB();
 
     @GetMapping("/post")
     public void listingForm( Model model) {
@@ -26,7 +30,6 @@ public class RentalitController {
 	@PostMapping("/createListing")
     public String createListing(@ModelAttribute Listing listing) {
         try {
-            MongoDB mongo = new MongoDB();
             mongo.addListing(listing);            
             return "result";
 
@@ -36,4 +39,14 @@ public class RentalitController {
 
         }
     }
+	
+//	@GetMapping("/search")
+//	public List<Document> queryAllListings() {
+//		return mongo.search_Item("");
+//	}
+	
+//	@GetMapping("/search")
+//	public  queryListings() {
+//		
+//	}
 }
