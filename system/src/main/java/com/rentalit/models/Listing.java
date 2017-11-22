@@ -12,6 +12,7 @@ public class Listing {
     private String description;
     private Integer rented;
     private Condition condition;
+    private Calendar calendar;
     
     /* State Pattern */
     ProductState availableState = new AvailableState();
@@ -24,15 +25,6 @@ public class Listing {
     
     public String getId() {
 		return this.id;
-	}
-
-	public void set_Id(String id) {
-		this.id = id;
-	}
-	
-	@JsonProperty("_id")
-	private void unpackNameFromNestedObject(Map<String, String> idObj) {
-	    this.id = idObj.get("$oid");
 	}
 
     public Condition getCondition() {
@@ -51,7 +43,16 @@ public class Listing {
     public String getProductName() {
         return productName;
     }
+    
+    public Calendar getCalendar() {
+		return calendar;
+	}
 
+    @JsonProperty("_id")
+	private void setId(Map<String, String> idObj) {
+	    this.id = idObj.get("$oid");
+	}
+    
     public void setCondition(String condition) { this.condition = Condition.valueOf(condition);}
 
 
@@ -62,6 +63,10 @@ public class Listing {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+    
+	public void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
+	}
 
     @JsonProperty("isRented")
     public void setRented(Integer rented) {
@@ -82,15 +87,18 @@ public class Listing {
 		this.currentState = newState;
 	}
 	
-	public void acceptRental() {
+	public void acceptRental(Calendar calendar) {
+		setCalendar(calendar);
 		this.currentState.acceptRental(this);
 	}
 	
-	public void RequestRental() {
+	public void RequestRental(Calendar calendar) {
+		setCalendar(calendar);
 		this.currentState.requestRental(this);
 	}
 	
-	public void ReturnRental() {
+	public void ReturnRental(Calendar calendar) {
+		setCalendar(calendar);
 		this.currentState.requestRental(this);
 	}
 }
