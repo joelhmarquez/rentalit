@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 @Configurable
 public class AvailableState implements ProductState{
-
+	MongoDB mongo = new MongoDB();
+	
 	@Override
 	public void acceptRental(Listing listing) {
-		listing.setCurrentState(listing.getRentedState());
+		listing.setRented(1);
+		mongo.updateListing(listing);
 	}
 	
 	@Override
@@ -17,7 +19,7 @@ public class AvailableState implements ProductState{
 
 	@Override
 	public void returnRental(Listing listing) {
-		listing.setCurrentState(listing.getAvailableState());
+		// TODO Auto-generated method stub
 	}
 
 }

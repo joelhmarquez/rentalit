@@ -29,7 +29,7 @@ public class MongoDB {
 	static Logger log = LoggerFactory.getLogger(MongoDB.class);
 	ObjectMapper objectMapper = new ObjectMapper();
 	
-    public void addListing(Listing listing) throws InvalidListingException{
+    public void addListing(Listing listing) throws InvalidListingException {
     		log.info("Adding post to database: ", listing);
 
         MongoClient mongoClient = new MongoClient();
@@ -49,6 +49,10 @@ public class MongoDB {
 
 		//collection.deleteOne(eq("name", "MongoDB")); //delete after insert
 
+    }
+    
+    public void updateListing(Listing listing) {
+    		// TODO write code to update listing (The isRented property should be changed)
     }
 
     public Document mongo_Query(Listing listing){

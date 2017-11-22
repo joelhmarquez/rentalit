@@ -77,14 +77,6 @@ public class Listing {
     public ProductState getCurrentState() {
 		return this.currentState;
 	}
-    
-    public ProductState getAvailableState() {
-		return this.availableState;
-	}
-    
-    public ProductState getRentedState() {
-		return this.rentedState;
-	}
 	
 	public void setCurrentState(ProductState newState) {
 		this.currentState = newState;
