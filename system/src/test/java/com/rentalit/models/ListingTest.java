@@ -11,7 +11,7 @@ public class ListingTest {
 	@Before
 	public void setUp() throws Exception {
 		listing = new Listing();
-		listing.set_Id("mockId");
+//		listing.setId("mockId");
 		listing.setCondition("GOOD");
 		listing.setDescription("Mock Descrition");
 		listing.setProductName("Mock name");
@@ -21,7 +21,7 @@ public class ListingTest {
 	@Test
 	public void testAcceptRental() throws Exception {
 		assertEquals(listing.getCurrentState(), listing.availableState);
-		listing.acceptRental();
+//		listing.acceptRental();
 		assertEquals(listing.getCurrentState(), listing.rentedState);
 	}
 

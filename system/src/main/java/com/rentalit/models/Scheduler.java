@@ -1,13 +1,12 @@
 package com.rentalit.models;
-import javax.print.Doc;
 import org.bson.Document;
-import java.sql.Date;
+
 import java.util.List;
 
 public class Scheduler {
     public void requestRental(String start_Date, String end_Date, Listing listing){
             Calendar schedule = new Calendar();
-            schedule.setStart_Date(start_Date);
+            schedule.setStartDate(start_Date);
             schedule.setEnd_Date(end_Date);
             MongoDB mongo = new MongoDB();
             Document query = mongo.mongo_Query(listing);

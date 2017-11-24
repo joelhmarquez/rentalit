@@ -1,23 +1,29 @@
 package com.rentalit.models;
-import java.sql.Date;
-public class Calendar {
-    public String start_Date;
-    public String end_Date;
 
-    public String getStart_Date() {
-        return start_Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Calendar {
+
+    public String startDate;
+    public String endDate;
+
+    public String getStartDate() {
+        return startDate;
     }
 
     public String getEnd_Date() {
-        return end_Date;
+        return endDate;
     }
 
+
+    @JsonProperty("startDate")
     public void setEnd_Date(String end_Date) {
-        this.end_Date = end_Date;
+        this.endDate = end_Date;
     }
 
-    public void setStart_Date(String start_Date) {
-        this.start_Date = start_Date;
+    @JsonProperty("endDate")
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
 }

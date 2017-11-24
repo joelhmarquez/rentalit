@@ -43,12 +43,6 @@ public class MongoDB {
         Validator.validate(listing.getProductName(),listing.getDescription(),listing.getCondition().toString());
         collection.insertOne(doc);//insert into collection
 
-        //Document myDoc = collection.find(eq("product_name", product_Name)).first();
-
-        //System.out.println(myDoc.toJson());
-
-		//collection.deleteOne(eq("name", "MongoDB")); //delete after insert
-
     }
     
     public void updateListing(Listing listing) {
@@ -59,9 +53,10 @@ public class MongoDB {
         Document doc = new Document("product_Name", listing.getProductName()) //document to insert
                 .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
-                .append("isRented", 0)
-                .append("startDate", "")
-                .append("endDate","");
+                .append("rented", 0)
+//                .append("calendar", listing.getCalendar());
+                .append("endDate", "0");
+
         return doc;
     }
 
@@ -75,10 +70,6 @@ public class MongoDB {
         FindIterable<Document> doc = collection.find(query);
         List<Listing> results = new ArrayList<>();
 
-//        if (doc == ) {
-//            log.error("NO ITEMS");
-//        }
-
         for(Document docs : doc) {
         		try {
         			results.add(objectMapper.readValue(docs.toJson(), Listing.class));
@@ -88,6 +79,9 @@ public class MongoDB {
         }
         if(results.isEmpty()) {
             log.error("results are empty");
+        }
+        else{
+            log.info("Found results in mongo, length is: " + results.size());
         }
         return results;
     }

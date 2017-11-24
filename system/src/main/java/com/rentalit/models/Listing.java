@@ -4,15 +4,17 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rentalit.resources.Condition;
-import java.sql.Date;
 
 public class Listing {
+
 	private String id;
     private String productName;
     private String description;
     private Integer rented;
     private Condition condition;
     private Calendar calendar;
+//    private String startDate;
+    private String endDate;
     
     /* State Pattern */
     ProductState availableState = new AvailableState();
@@ -22,7 +24,11 @@ public class Listing {
     public Listing(){
     	
     }
-    
+
+    public String getEndDate() {
+        return endDate;
+    }
+
     public String getId() {
 		return this.id;
 	}
@@ -68,7 +74,11 @@ public class Listing {
 		this.calendar = calendar;
 	}
 
-    @JsonProperty("isRented")
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    @JsonProperty("rented")
     public void setRented(Integer rented) {
         this.rented = rented;
         if(this.rented == 1) {

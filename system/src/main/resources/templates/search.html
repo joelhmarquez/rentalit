@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Post an Item for Rent</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 style="text-align: center">Search Rentalit</h1>
+<form style="text-align: center" action="#" th:action="@{/searchresult}" th:object="${listing}" method="post">
+    <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}" required/></p>
+    <p style="text-align: center">Product Description: <input type="text" th:field="*{description}" required/></p>
+
+    <p style="text-align: center">Available Now:
+        <select th:field="*{rented}" required>
+            <option value=0>Yes</option>
+            <option value=1>No</option>
+        </select>
+    </p>
+
+    <p style="text-align: center">Product Condition:
+        <select th:field="*{condition}" required>
+            <option value="GOOD">Good</option>
+            <option value="BAD">Bad</option>
+            <option value="NEW">New</option>
+            <option value="USED">Used</option>
+        </select>
+    </p>
+
+    <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

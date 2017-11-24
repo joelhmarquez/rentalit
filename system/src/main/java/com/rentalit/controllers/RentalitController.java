@@ -4,6 +4,7 @@ import com.rentalit.error.InvalidListingException;
 
 import java.util.List;
 
+import com.rentalit.models.Calendar;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,12 @@ public class RentalitController {
 
 	@PostMapping("/createListing")
     public String createListing(@ModelAttribute Listing listing) {
+
+        Calendar calendar = new Calendar();
+        calendar.setEnd_Date("0");
+        calendar.setEnd_Date("0");
+        listing.setCalendar(calendar);
+
         try {
             mongo.addListing(listing);            
             return "result";
@@ -38,15 +45,28 @@ public class RentalitController {
         		return "Unable to create posting.";
 
         }
+
     }
-	
-//	@GetMapping("/search")
-//	public List<Document> queryAllListings() {
-//		return mongo.search_Item("");
-//	}
-	
-//	@GetMapping("/search")
-//	public  queryListings() {
-//		
-//	}
+
+    @GetMapping("/search")
+    public void searchForm( Model model) {
+        model.addAttribute("listing", new Listing());
+    }
+
+    @PostMapping("/searchresult")
+    public String submitSearch(Model model, @ModelAttribute Listing listing) {
+
+        Calendar calendar = new Calendar();
+        calendar.setEnd_Date("0");
+        calendar.setEnd_Date("0");
+        listing.setCalendar(calendar);
+
+        Document query = mongo.mongo_Query(listing);
+        List <Listing> results = mongo.search_Item(query);
+        model.addAttribute("results", results);
+
+        log.info("Successful search");
+        return "searchresult";
+
+    }
 }

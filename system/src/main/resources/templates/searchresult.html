@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 style="text-align: center">Success!</h1>
+<p style="text-align: center" th:text="'Product Name: ' + ${listing.productName}" />
+<p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+<p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+<a  href="/search" style="text-align: center" >Search another listing</a>
+</body>
+</html>
