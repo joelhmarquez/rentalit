@@ -5,10 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1 style="text-align: center">Success!</h1>
-<p style="text-align: center" th:text="'Product Name: ' + ${listing.productName}" />
-<p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
-<p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+<h1 style="text-align: center">Results:</h1>
+
+<div th:if="${!results.isEmpty()}">
+    <tr th:each="data, iterstat: ${results}">
+        <p style="text-align: center" th:text="'Product Name: ' + ${data.productName}" />
+        <p style="text-align: center" th:text="'Description: ' + ${data.description}" />
+        <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
+    </tr>
+</div>
+<div th:unless="${!results.isEmpty()}">
+    <p style="text-align: center"> No matching products in the system currently. </p>
+</div>
 <a  href="/search" style="text-align: center" >Search another listing</a>
 </body>
 </html>
