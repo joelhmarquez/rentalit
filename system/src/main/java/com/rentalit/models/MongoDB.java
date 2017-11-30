@@ -54,8 +54,7 @@ public class MongoDB {
                 .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
                 .append("rented", 0)
-//                .append("calendar", listing.getCalendar());
-                .append("endDate", "0");
+                .append("calendar", new Document("startDate", "").append("endDate", ""));
 
         return doc;
     }

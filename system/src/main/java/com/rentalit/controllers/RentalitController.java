@@ -31,12 +31,6 @@ public class RentalitController {
 
 	@PostMapping("/createListing")
     public String createListing(@ModelAttribute Listing listing) {
-
-        Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
-        listing.setCalendar(calendar);
-
         try {
             mongo.addListing(listing);            
             return "result";
@@ -44,7 +38,6 @@ public class RentalitController {
         } catch (InvalidListingException e) {
         		log.error("Unable to create posting", e);
         		return "Unable to create posting.";
-
         }
 
     }
@@ -58,8 +51,8 @@ public class RentalitController {
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
+        calendar.setStartDate("0");
+        calendar.setEndDate("0");
         listing.setCalendar(calendar);
 
         Document query = mongo.mongo_Query(listing);

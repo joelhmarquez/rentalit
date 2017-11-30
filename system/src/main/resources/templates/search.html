@@ -7,11 +7,11 @@
 <body>
 <h1 style="text-align: center">Search Rentalit</h1>
 <form style="text-align: center" action="#" th:action="@{/searchresult}" th:object="${listing}" method="post">
-    <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}" required/></p>
-    <p style="text-align: center">Product Description: <input type="text" th:field="*{description}" required/></p>
+    <p style="text-align: center">Product Name: <input type="text" value="" th:field="*{productName}"/></p>
+    <p style="text-align: center">Product Description: <input type="text" value="" th:field="*{description}"/></p>
 
     <p style="text-align: center">Available Now:
-        <select th:field="*{rented}" required>
+        <select th:field="*{rented}">
             <option value=0>Yes</option>
             <option value=1>No</option>
         </select>
