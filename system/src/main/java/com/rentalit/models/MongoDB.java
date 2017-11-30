@@ -85,7 +85,7 @@ public class MongoDB {
     		Document doc = new Document();
 		
 		if(!listing.getProductName().isEmpty()) doc.append("product_Name", Pattern.compile(listing.getProductName(), Pattern.CASE_INSENSITIVE));
-		if(!listing.getDescription().isEmpty()) doc.append("description", listing.getDescription());
+		if(!listing.getDescription().isEmpty()) doc.append("description", Pattern.compile(listing.getDescription(), Pattern.CASE_INSENSITIVE));
 		if(listing.getRented() != 2) doc.append("rented", listing.getRented());
 		if(listing.getCalendar() != null) doc.append("calendar", new Document("startDate", listing.getCalendar().getStartDate()).append("endDate", listing.getCalendar().getEndDate()));
 		if(listing.getCondition() != Condition.ANY) doc.append("condition", listing.getCondition().toString());

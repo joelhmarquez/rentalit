@@ -28,17 +28,18 @@
     <div class="container">
         <h1 class="jumbotron-heading">Search Rentalit</h1>
         <form style="text-align: center;" action="#" th:action="@{/searchresult}" th:object="${listing}" method="post">
-            <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}" required/></p>
-            <p style="text-align: center">Product Description: <input type="text" th:field="*{description}" required/></p>
+            <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}"/></p>
+            <p style="text-align: center">Product Description: <input type="text" th:field="*{description}"/></p>
             
             <p style="text-align: center">Available Now:
-                <select th:field="*{rented}" required>
+                <select th:field="*{rented}">
+                    <option value=2></option>
                     <option value=0>Yes</option>
                     <option value=1>No</option>
                 </select>
             </p>
 			<p style="text-align: center">Product Condition:
-			    <select th:field="*{condition}" required>
+			    <select th:field="*{condition}">
 			    		<option value="ANY"></option>
 			        <option value="GOOD">Good</option>
 			        <option value="BAD">Bad</option>
