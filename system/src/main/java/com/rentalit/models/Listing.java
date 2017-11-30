@@ -13,8 +13,6 @@ public class Listing {
     private Integer rented;
     private Condition condition;
     private Calendar calendar;
-//    private String startDate;
-    private String endDate;
     
     /* State Pattern */
     ProductState availableState = new AvailableState();
@@ -23,10 +21,6 @@ public class Listing {
     
     public Listing(){
     	
-    }
-
-    public String getEndDate() {
-        return endDate;
     }
 
     public String getId() {
@@ -73,11 +67,7 @@ public class Listing {
 	public void setCalendar(Calendar calendar) {
 		this.calendar = calendar;
 	}
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
+	
     @JsonProperty("rented")
     public void setRented(Integer rented) {
         this.rented = rented;
