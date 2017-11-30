@@ -3,32 +3,62 @@
 <head>
     <title>Post an Item for Rent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 style="text-align: center">Search Rentalit</h1>
-<form style="text-align: center" action="#" th:action="@{/searchresult}" th:object="${listing}" method="post">
-    <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}"/></p>
-    <p style="text-align: center">Product Description: <input type="text" th:field="*{description}"/></p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Rentalit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <p style="text-align: center">Available Now:
-        <select th:field="*{rented}">
-        		<option value=2></option>
-            <option value=0>Yes</option>
-            <option value=1>No</option>
-        </select>
-    </p>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Search Rentalit</h1>
+        <form style="text-align: center;" action="#" th:action="@{/searchresult}" th:object="${listing}" method="post">
+            <p style="text-align: center">Product Name: <input type="text" th:field="*{productName}"/></p>
+            <p style="text-align: center">Product Description: <input type="text" th:field="*{description}"/></p>
+            
+            <p style="text-align: center">Available Now:
+                <select th:field="*{rented}">
+                    <option value=2></option>
+                    <option value=0>Yes</option>
+                    <option value=1>No</option>
+                </select>
+            </p>
+			<p style="text-align: center">Product Condition:
+			    <select th:field="*{condition}">
+			    		<option value="ANY"></option>
+			        <option value="GOOD">Good</option>
+			        <option value="BAD">Bad</option>
+			        <option value="NEW">New</option>
+			        <option value="USED">Used</option>
+			    </select>
+			</p>
 
-    <p style="text-align: center">Product Condition:
-        <select th:field="*{condition}" required>
-        		<option value="GOOD"></option>
-            <option value="GOOD">Good</option>
-            <option value="BAD">Bad</option>
-            <option value="NEW">New</option>
-            <option value="USED">Used</option>
-        </select>
-    </p>
+            <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+</section>
 
-    <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>© Rentalit, A Rental Service!</p>
+        <p>New to Renatlit? Sign up <a href="#">here</a> </p>
+    </div>
+</footer>
 </body>
 </html>
