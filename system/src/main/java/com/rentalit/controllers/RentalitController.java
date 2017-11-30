@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.rentalit.models.Listing;
 import com.rentalit.models.MongoDB;
+import com.rentalit.models.Scheduler;
 
 @Controller
 public class RentalitController {
@@ -32,8 +33,8 @@ public class RentalitController {
     public String createListing(@ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
+        calendar.setEnd_Date("");
+        calendar.setEnd_Date("");
         listing.setCalendar(calendar);
 
         try {
@@ -57,12 +58,12 @@ public class RentalitController {
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
+
         calendar.setStartDate("");
         calendar.setEnd_Date("");
-//        listing.setCalendar(calendar);
+
         listing.setCalendar(calendar);
         listing.setProductName("");
-
 
         Document query = mongo.mongo_Query(listing);
         List <Listing> results = mongo.search_Item(query);
@@ -70,6 +71,17 @@ public class RentalitController {
 
         log.info("Successful search");
         return "searchresult";
-
+    }
+    
+    @GetMapping("/rent")
+    public void rentPreview( Model model, @ModelAttribute Listing listing) {
+        model.addAttribute("calendar", new Calendar());
+    }
+    
+    @PostMapping("/rent")
+    public String rentItemc(Model model, @ModelAttribute Calendar calendar, @ModelAttribute Listing listing) {
+    		Scheduler scheduler = new Scheduler();
+    		scheduler.requestRental(calendar, listing);
+    		return "succesfully rented item";
     }
 }
