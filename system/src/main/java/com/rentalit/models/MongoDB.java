@@ -11,9 +11,13 @@ import com.mongodb.client.MongoCollection;
 
 import com.mongodb.DBCursor;
 
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import com.rentalit.error.InvalidListingException;
 import com.rentalit.resources.Validator;
 import org.bson.Document;
+import org.bson.BSON;
+import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,9 +55,12 @@ public class MongoDB {
         MongoClient mongo = new MongoClient();
         MongoDatabase database = mongo.getDatabase("dummydb"); //connect db
 
-        MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
-        //collection.findOneAndUpdate(doc,{$set:1})
-
+        MongoCollection<Document> collection = database.getCollection("mycollection");
+        Bson filter = Filters.eq("_id", listing.getId());
+        Bson updates = Updates.set("isRented", listing.getRented());
+        collection.findOneAndUpdate(filter,updates);
+        Bson updates2 = Updates.set("calendar", new Document("startDate",listing.getCalendar().getStartDate()).append("endDate",listing.getCalendar().getEnd_Date()));//get collection
+        collection.findOneAndUpdate(filter,updates2);
 
     }
 
