@@ -52,20 +52,24 @@ public class RentalitController {
         Document query = mongo.mongo_Query(listing);
         List <Listing> results = mongo.search_Item(query);
         model.addAttribute("results", results);
-
         log.info("Successful search");
+        model.addAttribute("newlisting", new Listing());
         return "searchresult";
     }
     
-    @GetMapping("/rent")
-    public void rentPreview( Model model, @ModelAttribute Listing listing) {
+    @PostMapping("/rent")
+    public String rentPreview( Model model, @ModelAttribute Listing listing) {
+
+        log.info(listing.getProductName() + " nfc");
+
         model.addAttribute("calendar", new Calendar());
+        return "rent";
     }
     
-    @PostMapping("/rent")
-    public String rentItemc(Model model, @ModelAttribute Calendar calendar, @ModelAttribute Listing listing) {
-    		Scheduler scheduler = new Scheduler();
-    		scheduler.requestRental(calendar, listing);
-    		return "succesfully rented item";
-    }
+//    @PostMapping("/rent")
+//    public String rentItemc(Model model, @ModelAttribute Calendar calendar, @ModelAttribute Listing listing) {
+//    		Scheduler scheduler = new Scheduler();
+//    		scheduler.requestRental(calendar, listing);
+//    		return "succesfully rented item";
+//    }
 }

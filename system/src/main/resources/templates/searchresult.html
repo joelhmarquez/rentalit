@@ -7,11 +7,21 @@
 <body>
 <h1 style="text-align: center">Results:</h1>
 
+<form style="text-align: center" action="#" th:action="@{/rent}" th:object="${newlisting}" method="post">
+
 <div th:if="${!results.isEmpty()}">
     <tr th:each="data, iterstat: ${results}">
         <p style="text-align: center" th:text="'Product Name: ' + ${data.productName}" />
         <p style="text-align: center" th:text="'Description: ' + ${data.description}" />
         <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
+
+
+        <p style="text-align: center" th:text="'Product Name: ' + ${newlisting.productName}" th:value="${data.productName}" />
+        <p hidden style="text-align: center" th:text="'Description: ' + ${newlisting.description}" th:value="${data.productName}" />
+        <p hidden style="text-align: center" th:text="'Condition: ' + ${newlisting.condition}" th:value="${data.productName}" />
+        <p style="text-align: center"><input type="submit" value="Submit" /> </p>
+</form>
+
     </tr>
 </div>
 <div th:unless="${!results.isEmpty()}">
