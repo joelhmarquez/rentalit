@@ -49,13 +49,8 @@ public class RentalitController {
 
     @PostMapping("/searchresult")
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
-
-        Calendar calendar = new Calendar();
-        calendar.setStartDate("0");
-        calendar.setEndDate("0");
-        listing.setCalendar(calendar);
-
         Document query = mongo.mongo_Query(listing);
+        log.info("Quering for objects matching: ", query);
         List <Listing> results = mongo.search_Item(query);
         model.addAttribute("results", results);
 
