@@ -53,9 +53,9 @@ public class MongoDB {
         Document doc = new Document("product_Name", listing.getProductName()) //document to insert
                 .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
-                .append("rented", 0)
+                .append("rented", 0);
 //                .append("calendar", listing.getCalendar());
-                .append("endDate", "0");
+              //  .append("endDate", "0");
 
         return doc;
     }

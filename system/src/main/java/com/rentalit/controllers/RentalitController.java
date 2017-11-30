@@ -57,9 +57,12 @@ public class RentalitController {
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
+        calendar.setStartDate("");
+        calendar.setEnd_Date("");
+//        listing.setCalendar(calendar);
         listing.setCalendar(calendar);
+        listing.setProductName("");
+
 
         Document query = mongo.mongo_Query(listing);
         List <Listing> results = mongo.search_Item(query);

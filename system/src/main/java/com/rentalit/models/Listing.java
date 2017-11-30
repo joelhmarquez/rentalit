@@ -74,9 +74,9 @@ public class Listing {
 		this.calendar = calendar;
 	}
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
+    //public void setEndDate(String endDate) {
+      //  this.endDate = endDate;
+    //}
 
     @JsonProperty("rented")
     public void setRented(Integer rented) {
