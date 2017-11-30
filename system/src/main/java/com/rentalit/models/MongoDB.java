@@ -50,13 +50,20 @@ public class MongoDB {
     }
 
     public Document mongo_Query(Listing listing){
-        Document doc = new Document("product_Name", listing.getProductName()) //document to insert
-                .append("condition", listing.getCondition().toString())
-                .append("description", listing.getDescription())
-                .append("rented", 0)
-                .append("calendar", new Document("startDate", "").append("endDate", ""));
+    		if(!isEmptySearch(listing)) {
+    			try {
+        			Document doc = new Document("product_Name", listing.getProductName()) //document to insert
+        	                .append("condition", listing.getCondition().toString())
+        	                .append("description", listing.getDescription())
+        	                .append("rented", 0)
+        	                .append("calendar", new Document("startDate", " ").append("endDate", " "));
 
-        return doc;
+        	        return doc;	
+        		} catch (Exception e) {
+        			log.error("Unable to create document: ", e);
+        		}
+    		}
+    		return null;
     }
 
 	public List<Listing> search_Item(Document query){
@@ -66,9 +73,17 @@ public class MongoDB {
         MongoDatabase database = mongoClient.getDatabase("dummydb"); //connect db
 
         MongoCollection<Document> collection = database.getCollection("mycollection");
-        FindIterable<Document> doc = collection.find(query);
+        
+        /* Query Mongodb */
+        FindIterable<Document> doc;
+        if(query != null) {
+        		doc = collection.find(query);
+        } else {
+        		doc = collection.find();
+        }
+       
+        
         List<Listing> results = new ArrayList<>();
-
         for(Document docs : doc) {
         		try {
         			results.add(objectMapper.readValue(docs.toJson(), Listing.class));
@@ -84,6 +99,11 @@ public class MongoDB {
         }
         return results;
     }
+	
+	public boolean isEmptySearch(Listing listing) {
+		return listing.getProductName() == "" && listing.getDescription() == "";
+	}
+	
     @Override
     public String toString() {
         return super.toString();

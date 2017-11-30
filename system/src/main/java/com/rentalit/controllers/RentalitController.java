@@ -50,7 +50,6 @@ public class RentalitController {
     @PostMapping("/searchresult")
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
         Document query = mongo.mongo_Query(listing);
-        log.info("Quering for objects matching: ", query);
         List <Listing> results = mongo.search_Item(query);
         model.addAttribute("results", results);
 
