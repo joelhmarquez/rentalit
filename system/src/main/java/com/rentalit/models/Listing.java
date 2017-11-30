@@ -67,7 +67,7 @@ public class Listing {
 	public void setCalendar(Calendar calendar) {
 		this.calendar = calendar;
 	}
-
+	
     @JsonProperty("rented")
     public void setRented(Integer rented) {
         this.rented = rented;
