@@ -47,6 +47,14 @@ public class MongoDB {
     
     public void updateListing(Listing listing) {
     		// TODO write code to update listing (The isRented property should be changed)
+        Document doc = new Document("id",listing.getId());
+        MongoClient mongo = new MongoClient();
+        MongoDatabase database = mongo.getDatabase("dummydb"); //connect db
+
+        MongoCollection<Document> collection = database.getCollection("mycollection"); //get collection
+        //collection.findOneAndUpdate(doc,{$set:1})
+
+
     }
 
     public Document mongo_Query(Listing listing){
@@ -54,9 +62,8 @@ public class MongoDB {
                 .append("condition", listing.getCondition().toString())
                 .append("description", listing.getDescription())
                 .append("rented", 0)
-//                .append("calendar", listing.getCalendar());
-                .append("endDate", "0");
-
+                .append("startDate","")
+                .append("endDate","");
         return doc;
     }
 

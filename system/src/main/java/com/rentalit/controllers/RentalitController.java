@@ -33,8 +33,8 @@ public class RentalitController {
     public String createListing(@ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
+        calendar.setEnd_Date("");
+        calendar.setEnd_Date("");
         listing.setCalendar(calendar);
 
         try {
@@ -58,8 +58,8 @@ public class RentalitController {
     public String submitSearch(Model model, @ModelAttribute Listing listing) {
 
         Calendar calendar = new Calendar();
-        calendar.setEnd_Date("0");
-        calendar.setEnd_Date("0");
+        calendar.setEnd_Date("");
+        calendar.setEnd_Date("");
         listing.setCalendar(calendar);
 
         Document query = mongo.mongo_Query(listing);
