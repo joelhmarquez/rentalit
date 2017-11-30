@@ -12,6 +12,7 @@
 
     <p style="text-align: center">Available Now:
         <select th:field="*{rented}">
+        		<option value=2></option>
             <option value=0>Yes</option>
             <option value=1>No</option>
         </select>
@@ -19,6 +20,7 @@
 
     <p style="text-align: center">Product Condition:
         <select th:field="*{condition}" required>
+        		<option value="GOOD"></option>
             <option value="GOOD">Good</option>
             <option value="BAD">Bad</option>
             <option value="NEW">New</option>
