@@ -14,6 +14,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.rentalit.error.InvalidListingException;
+import com.rentalit.resources.Condition;
 import com.rentalit.resources.Validator;
 import org.bson.Document;
 import org.bson.BSON;
@@ -27,6 +28,7 @@ import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class MongoDB {
@@ -65,20 +67,30 @@ public class MongoDB {
     }
 
     public Document mongo_Query(Listing listing){
-    		if(!isEmptySearch(listing)) {
-    			try {
-        			Document doc = new Document("product_Name", listing.getProductName()) //document to insert
-        	                .append("condition", listing.getCondition().toString())
-        	                .append("description", listing.getDescription())
-        	                .append("rented", 0)
-        	                .append("calendar", new Document("startDate", " ").append("endDate", " "));
+		try {
+    			Document doc = new Document("product_Name", listing.getProductName()) //document to insert
+    	                .append("condition", listing.getCondition().toString())
+    	                .append("description", listing.getDescription())
+    	                .append("rented", 0)
+    	                .append("calendar", new Document("startDate", " ").append("endDate", " "));
 
-        	        return doc;	
-        		} catch (Exception e) {
-        			log.error("Unable to create document: ", e);
-        		}
+    	        return doc;	
+    		} catch (Exception e) {
+    			log.error("Unable to create document: ", e);
     		}
-    		return null;
+    		return new Document();
+    }
+    
+    public Document query_builder(Listing listing) {
+    		Document doc = new Document();
+		
+		if(!listing.getProductName().isEmpty()) doc.append("product_Name", Pattern.compile(listing.getProductName(), Pattern.CASE_INSENSITIVE));
+		if(!listing.getDescription().isEmpty()) doc.append("description", listing.getDescription());
+		if(listing.getRented() != 2) doc.append("rented", listing.getRented());
+		if(listing.getCalendar() != null) doc.append("calendar", new Document("startDate", listing.getCalendar().getStartDate()).append("endDate", listing.getCalendar().getEndDate()));
+		if(listing.getCondition() != Condition.ANY) doc.append("condition", listing.getCondition().toString());
+		
+		return doc;
     }
 
 	public List<Listing> search_Item(Document query){
@@ -114,10 +126,6 @@ public class MongoDB {
         }
         return results;
     }
-	
-	public boolean isEmptySearch(Listing listing) {
-		return listing.getProductName() == "" && listing.getDescription() == "";
-	}
 	
     @Override
     public String toString() {

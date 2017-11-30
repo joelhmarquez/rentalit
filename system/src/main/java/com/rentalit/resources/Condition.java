@@ -4,7 +4,8 @@ public enum Condition {
 	NEW("NEW"),
 	GOOD("GOOD"),
 	USED("USED"),
-	BAD("BAD");
+	BAD("BAD"),
+	ANY("ANY");
 
 	private final String text;
 
