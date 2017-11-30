@@ -3,23 +3,51 @@
 <head>
     <title>Post an Item for Rent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 style="text-align: center">Form</h1>
-<form style="text-align: center" action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
-    <p style="text-align: center">Name: <input type="text" th:field="*{productName}" required/></p>
-    <p style="text-align: center">Description: <input type="text" th:field="*{description}" required/></p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Rentalit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <p style="text-align: center">Condition:
-        <select th:field="*{condition}" required>
-            <option value="GOOD">Good</option>
-            <option value="BAD">Bad</option>
-            <option value="NEW">New</option>
-            <option value="USED">Used</option>
-        </select>
-    </p>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Product Form</h1>
 
-    <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+        <form style="text-align: center" action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
+            <p style="text-align: center">Name: <input type="text" th:field="*{productName}" required/></p>
+            <p style="text-align: center">Description: <input type="text" th:field="*{description}" required/></p>
+
+            <p style="text-align: center">Condition:
+                <select th:field="*{condition}" required>
+                    <option value="GOOD">Good</option>
+                    <option value="BAD">Bad</option>
+                    <option value="NEW">New</option>
+                    <option value="USED">Used</option>
+                </select>
+            </p>
+
+            <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+</section>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>© Rentalit, A Rental Service!</p>
+        <p>New to Renatlit? Sign up <a href="#">here</a> </p>
+    </div>
+</footer>
 </body>
 </html>

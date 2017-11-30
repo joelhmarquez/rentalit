@@ -1,14 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Item Posted</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 style="text-align: center">Success!</h1>
-<p style="text-align: center" th:text="'Product Name: ' + ${listing.productName}" />
-<p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
-<p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
-<a  href="/post" style="text-align: center" >Submit another message</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Rentalit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Success!</h1>
+        <p style="text-align: center" th:text="'Product Name: ' + ${listing.productName}" />
+        <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+        <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+        <a  href="/post" class="btn btn-primary" style="text-align: center" >Post Another Product</a>
+    </div>
+</section>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>© Rentalit, A Rental Service!</p>
+        <p>New to Renatlit? Sign up <a href="#">here</a> </p>
+    </div>
+</footer>
 </body>
 </html>
