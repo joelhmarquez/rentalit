@@ -32,24 +32,6 @@ public class RentalitApplication {
 
 		SpringApplication.run(RentalitApplication.class, args);
 
-//		mongo_DB test = new mongo_DB();
-//
-//
-//		System.out.println("Enter your Product: ");
-//        Scanner scanner = new Scanner(System.in);
-//        String product = scanner.nextLine();
-//        System.out.println("Enter the Description: ");
-//        String description = scanner.nextLine();
-//        System.out.println("What is the condition: ");
-//        String condition = scanner.nextLine();
-//
-//
-//
-//        test.setDescription(description);
-//		test.setProductName(product);
-//		test.setCondition(condition);
-//		test.setRented(0);
-//		test.addListing(test.getProductName(),test.getCondition(),test.getDescription(),test.getRented());
 	}
 
 }
