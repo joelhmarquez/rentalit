@@ -52,18 +52,16 @@ public class MongoDB {
     }
     
     public void updateListing(Listing listing) {
-    		// TODO write code to update listing (The isRented property should be changed)
-        Document doc = new Document("id",listing.getId());
+    		log.info("updating listing: " + listing.getProductName());
         MongoClient mongo = new MongoClient();
         MongoDatabase database = mongo.getDatabase("dummydb"); //connect db
-
         MongoCollection<Document> collection = database.getCollection("mycollection");
-        Bson filter = Filters.eq("_id", listing.getId());
-        Bson updates = Updates.set("isRented", listing.getRented());
-        collection.findOneAndUpdate(filter,updates);
-        Bson updates2 = Updates.set("calendar", new Document("startDate",listing.getCalendar().getStartDate()).append("endDate",listing.getCalendar().getEndDate()));//get collection
-        collection.findOneAndUpdate(filter,updates2);
-
+    		Document updatedDoc = query_builder(listing);
+    		Document searchQuery = query_builder(listing);
+    		searchQuery.remove("calendar");
+    		searchQuery.remove("rented");
+    		
+    		collection.replaceOne(searchQuery, updatedDoc);
     }
 
     public Document mongo_Query(Listing listing){
