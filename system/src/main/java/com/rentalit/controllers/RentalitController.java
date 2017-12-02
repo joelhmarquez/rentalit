@@ -1,6 +1,7 @@
 package com.rentalit.controllers;
 
 import com.rentalit.error.InvalidListingException;
+import com.rentalit.error.RentedException;
 
 import java.util.List;
 
@@ -70,14 +71,17 @@ public class RentalitController {
     
     @PostMapping("/rentcheckout")
     public String rentItemc(Model model, @ModelAttribute Listing listing) {
-
         int rented = listing.getRented();
         listing.setRented(rented);
         log.info(listing.getProductName());
         log.info(listing.getRented().toString());
         log.info(listing.getCalendar().toString());
         Scheduler scheduler = new Scheduler();
-        scheduler.requestRental(listing);
+        try {
+        		scheduler.requestRental(listing);
+        } catch (RentedException e) {
+        		return "rentalfailure";
+        }
         return "rentsuccess";
 }
 }

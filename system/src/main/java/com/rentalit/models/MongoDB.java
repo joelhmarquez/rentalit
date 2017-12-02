@@ -53,7 +53,6 @@ public class MongoDB {
     
     public void updateListing(Listing listing) {
     		log.info("updating listing: " + listing.getProductName());
-    		log.info("Listing URL: " + listing.getUrl());
         MongoClient mongo = new MongoClient();
         MongoDatabase database = mongo.getDatabase("dummydb"); //connect db
         MongoCollection<Document> collection = database.getCollection("mycollection");
@@ -72,7 +71,7 @@ public class MongoDB {
     			Document doc = new Document("product_Name", listing.getProductName()) //document to insert
     	                .append("condition", listing.getCondition().toString())
     	                .append("description", listing.getDescription())
-                        .append("url",listing.getUrl())
+                    .append("url", listing.getUrl())
     	                .append("rented", 0)
     	                .append("calendar", new Document("startDate", " ").append("endDate", " "));
 
@@ -84,7 +83,6 @@ public class MongoDB {
     }
     
     public Document query_builder(Listing listing) {
-    		log.info("IN QUERY_BUILDER: " + listing.getUrl());
     		Document doc = new Document();
 		
 		if(!listing.getProductName().isEmpty()) doc.append("product_Name", Pattern.compile(listing.getProductName(), Pattern.CASE_INSENSITIVE));

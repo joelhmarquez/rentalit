@@ -3,6 +3,7 @@ package com.rentalit.models;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rentalit.error.RentedException;
 import com.rentalit.resources.Condition;
 
 public class Listing {
@@ -99,7 +100,7 @@ public class Listing {
 		this.currentState = newState;
 	}
 	
-	public void acceptRental() {
+	public void acceptRental() throws RentedException {
 		this.currentState.acceptRental(this);
 	}
 	
