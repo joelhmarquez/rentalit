@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div th:unless="${data.url == null}">
+                <div th:unless="${data.url!= null}">
                     <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
                         <div class="card h-100">
                             <img class="card-img-top" src="http://via.placeholder.com/700X400&text=No Image Provided" alt="">
