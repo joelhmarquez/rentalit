@@ -13,6 +13,7 @@ public class Listing {
     private Integer rented;
     private Condition condition;
     private Calendar calendar;
+    private String url;
     
     /* State Pattern */
     ProductState availableState = new AvailableState();
@@ -77,7 +78,15 @@ public class Listing {
         		setCurrentState(this.availableState);
         }
     }
-    
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     /* State Pattern Methods */
     public ProductState getCurrentState() {
 		return this.currentState;

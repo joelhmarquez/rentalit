@@ -28,6 +28,7 @@
         <form style="text-align: center" action="#" th:action="@{/createListing}" th:object="${listing}" method="post">
             <p style="text-align: center">Name: <input type="text" th:field="*{productName}" required/></p>
             <p style="text-align: center">Description: <input type="text" th:field="*{description}" required/></p>
+            <p style="text-align: center">Image Url: <input type="text" th:field="*{url}" required/></p>
 
             <p style="text-align: center">Condition:
                 <select th:field="*{condition}" required>
@@ -37,6 +38,7 @@
                     <option value="USED">Used</option>
                 </select>
             </p>
+            
 
             <p style="text-align: center"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
