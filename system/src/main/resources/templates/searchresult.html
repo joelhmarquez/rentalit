@@ -26,30 +26,59 @@
         <h1 class="jumbotron-heading">Search Results</h1>
         <div th:if="${!results.isEmpty()}">
             <tr th:each="data, iterstat: ${results}">
-                <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
-                    <div class="card h-100">
-                        <img class="card-img-top" th:src="${data.url}" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <p style="text-align: center" th:text="${data.productName}" />
-                            </h4>
-                            <p style="text-align: center" th:text="'Description: ' + ${data.description}" />
-                            <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
+                <div th:if="${data.url != null}">
+                    <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
+                        <div class="card h-100">
+                            <img class="card-img-top" th:src="${data.url}" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <p style="text-align: center" th:text="${data.productName}" />
+                                </h4>
+                                <p style="text-align: center" th:text="'Description: ' + ${data.description}" />
+                                <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
 
-                            <form ACTION="#" th:action="@{/rent}" th:object="${listing}" method="POST">
-                                <!--<input value="${data.productName}" th:field="*{productName}" />-->
-                                <input type="hidden" th:value="${data.productName}" th:attr="name='productName'" />
-                                <input type="hidden" th:value="${data.description}" th:attr="name='description'" />
-                                <input type="hidden" th:value="${data.condition}" th:attr="name='condition'" />
-                                <button type="submit">Rent</button>
-                            </form>
+                                <form ACTION="#" th:action="@{/rent}" th:object="${listing}" method="POST">
+                                    <input type="hidden" th:value="${data.productName}" th:attr="name='productName'" />
+                                    <input type="hidden" th:value="${data.description}" th:attr="name='description'" />
+                                    <input type="hidden" th:value="${data.condition}" th:attr="name='condition'" />
+                                    <button type="submit">Rent</button>
+                                </form>
 
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div th:unless="${data.url == null}">
+                    <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="http://via.placeholder.com/700X400&text=No Image Provided" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <p style="text-align: center" th:text="${data.productName}" />
+                                </h4>
+                                <p style="text-align: center" th:text="'Description: ' + ${data.description}" />
+                                <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
+
+                                <form ACTION="#" th:action="@{/rent}" th:object="${listing}" method="POST">
+                                    <!--<input value="${data.productName}" th:field="*{productName}" />-->
+                                    <input type="hidden" th:value="${data.productName}" th:attr="name='productName'" />
+                                    <input type="hidden" th:value="${data.description}" th:attr="name='description'" />
+                                    <input type="hidden" th:value="${data.condition}" th:attr="name='condition'" />
+                                    <button type="submit">Rent</button>
+                                </form>
+
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </tr>
         </div>
         <div th:unless="${!results.isEmpty()}">
