@@ -66,8 +66,8 @@ public class RentalitController {
     
     @PostMapping("/rentcheckout")
     public String rentItemc(Model model, @ModelAttribute Calendar calendar, @ModelAttribute Listing listing) {
-    		Scheduler scheduler = new Scheduler();
-    		scheduler.requestRental(calendar, listing);
-    		return "succesfully rented item";
+            Scheduler scheduler = new Scheduler();
+            scheduler.requestRental(calendar, listing);
+            return "rentcheckout";
     }
 }

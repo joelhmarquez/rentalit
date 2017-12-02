@@ -33,14 +33,22 @@
                     <h4 class="card-title">
                         <p style="text-align: center" th:text="${listing.productName}" />
                     </h4>
-                    <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
-                    <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
-                    <label for="startdate">Rental Start Date:</label>
-                    <input style="text-align: center" id="startdate" type="date" required>
-                    <label for="enddate">Rental End Date:</label>
-                    <input style="text-align: center" id="enddate" type="date" required>
-
-
+                    <form ACTION="#" th:object="${calendar}" method="POST">
+                        <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+                        <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+                        <label for="startdate">Rental Start Date:</label>
+                        <input style="text-align: center" id="startdate" type="date" th:field="*{startDate}" required>
+                        <label for="enddate">Rental End Date:</label>
+                        <input style="text-align: center" id="enddate" type="date" th:field="*{endDate}" required>
+                    </form>
+                    <form ACTION="#" th:object="${calendar}" method="POST">
+                        <!--<input type="hidden" th:value="${listing.productName}" th:attr="name='productName'" />-->
+                        <!--<input type="hidden" th:value="${listing.description}" th:attr="name='description'" />-->
+                        <!--<input type="hidden" th:value="${listing.condition}" th:attr="name='condition'" />-->
+                        <input th:value="${calendar.startDate}" th:attr="name='calendar'" />
+                        <input th:value="${calendar.endDate}" th:attr="name='calendar'" />
+                        <button type="submit">Confirm</button>
+                    </form>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
