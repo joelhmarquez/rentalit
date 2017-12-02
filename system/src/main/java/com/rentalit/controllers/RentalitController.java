@@ -60,7 +60,7 @@ public class RentalitController {
     
     @PostMapping("/rent")
     public String rentPreview( Model model, @ModelAttribute Listing listing) {
-        model.addAttribute("calendar", new Calendar());
+        listing.setCalendar(new Calendar());
         return "rent";
     }
     
