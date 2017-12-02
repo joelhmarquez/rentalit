@@ -71,7 +71,7 @@ public class MongoDB {
     			Document doc = new Document("product_Name", listing.getProductName()) //document to insert
     	                .append("condition", listing.getCondition().toString())
     	                .append("description", listing.getDescription())
-                        .append("imgaeURL",listing.getUrl())
+                        .append("url",listing.getUrl())
     	                .append("rented", 0)
     	                .append("calendar", new Document("startDate", " ").append("endDate", " "));
 
