@@ -39,7 +39,6 @@ public class RentalitController {
         		log.error("Unable to create posting", e);
         		return "Unable to create posting.";
         }
-
     }
 
     @GetMapping("/search")
@@ -54,20 +53,31 @@ public class RentalitController {
         List <Listing> results = mongo.search_Item(query);
         model.addAttribute("results", results);
         log.info("Successful search");
-        model.addAttribute("listing", new Listing());
+
+        listing = new Listing();
+        model.addAttribute("listing", listing);
         return "searchresult";
     }
     
     @PostMapping("/rent")
     public String rentPreview( Model model, @ModelAttribute Listing listing) {
+        int rented = listing.getRented();
+        listing.setRented(rented);
         listing.setCalendar(new Calendar());
+        model.addAttribute("newlisting", new Listing());
         return "rent";
     }
     
     @PostMapping("/rentcheckout")
     public String rentItemc(Model model, @ModelAttribute Listing listing) {
-    		Scheduler scheduler = new Scheduler();
-    		scheduler.requestRental(listing);
-    		return "succesfully rented item";
-    }
+
+        int rented = listing.getRented();
+        listing.setRented(rented);
+        log.info(listing.getProductName());
+        log.info(listing.getRented().toString());
+        log.info(listing.getCalendar().toString());
+        Scheduler scheduler = new Scheduler();
+        scheduler.requestRental(listing);
+        return "rentsuccess";
+}
 }

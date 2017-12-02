@@ -37,10 +37,13 @@
                             <p style="text-align: center" th:text="'Condition: ' + ${data.condition}" />
 
                             <form ACTION="#" th:action="@{/rent}" th:object="${listing}" method="POST">
+
                                 <!--<input value="${data.productName}" th:field="*{productName}" />-->
                                 <input type="hidden" th:value="${data.productName}" th:attr="name='productName'" />
                                 <input type="hidden" th:value="${data.description}" th:attr="name='description'" />
                                 <input type="hidden" th:value="${data.condition}" th:attr="name='condition'" />
+                                <input th:value="${data.rented}" th:attr="name='rented'" />
+                                <!--<td th:text="${listing.setRented(data.getRented())}"></td>-->
                                 <button type="submit">Rent</button>
                             </form>
 
