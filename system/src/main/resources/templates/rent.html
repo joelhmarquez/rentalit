@@ -28,6 +28,7 @@
 
         <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
             <div class="card h-100">
+                <img class="card-img-top" th:src="${listing.url}" alt="">
                 <div class="card-body">
                     <h4 class="card-title">
                         <p style="text-align: center" th:text="${listing.productName}" />
@@ -47,7 +48,7 @@
                         <input style="text-align: center" id="startdate" type="date" th:field="*{calendar.startDate}" required>
                         <label for="enddate">Rental End Date:</label>
                         <input style="text-align: center" id="enddate" type="date" th:field="*{calendar.endDate}" required>
-                        <button type="submit">Confirm</button>
+                        <p><button style="text-align: center" type="submit">Confirm</button></p>
                     </form>
                 </div>
                 <div class="card-footer">
