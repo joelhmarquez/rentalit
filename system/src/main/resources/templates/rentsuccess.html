@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>success</title>
@@ -25,6 +25,46 @@
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Successfully Rented!</h1>
+    </div>
+    <div th:if="${listing.url != null}">
+        <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
+            <div class="card h-100">
+                <img class="card-img-top" th:src="${listing.url}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <p style="text-align: center" th:text="${listing.productName}" />
+                    </h4>
+                    <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+                    <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+                    <p style="text-align: center" th:text="'From: ' + ${listing.calendar.startDate}" />
+                    <p style="text-align: center" th:text="'Until: ' + ${listing.calendar.endDate}" />
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:unless="${listing.url != null}">
+        <div class="col-lg-4 col-md-6 mb-4" style="margin-left: 33%; margin-right: 33%;">
+            <div class="card h-100">
+                <img class="card-img-top" src="http://via.placeholder.com/700X400&text=No Image Provided" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <p style="text-align: center" th:text="${listing.productName}" />
+                    </h4>
+                    <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+                    <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+                    <p style="text-align: center" th:text="'From: ' + ${listing.calendar.startDate}" />
+                    <p style="text-align: center" th:text="'Until: ' + ${listing.calendar.endDate}" />
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+            </div>
+        </div>
     </div>
     <a href="/" class="btn btn-primary" style="text-align: center" >Home</a>
     </div>
