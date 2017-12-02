@@ -15,15 +15,14 @@ public class Calendar {
         return endDate;
     }
 
-
     @JsonProperty("startDate")
-    public void setStartDate(String end_Date) {
-        this.endDate = end_Date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     @JsonProperty("endDate")
-    public void setEndDate(String startDate) {
-        this.startDate = startDate;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
 }

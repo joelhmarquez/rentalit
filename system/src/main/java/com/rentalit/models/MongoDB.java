@@ -53,10 +53,13 @@ public class MongoDB {
     
     public void updateListing(Listing listing) {
     		log.info("updating listing: " + listing.getProductName());
+    		log.info("Listing URL: " + listing.getUrl());
         MongoClient mongo = new MongoClient();
         MongoDatabase database = mongo.getDatabase("dummydb"); //connect db
         MongoCollection<Document> collection = database.getCollection("mycollection");
     		Document updatedDoc = query_builder(listing);
+    		updatedDoc.put("product_Name", listing.getProductName());
+    		updatedDoc.put("description", listing.getDescription());
     		Document searchQuery = query_builder(listing);
     		searchQuery.remove("calendar");
     		searchQuery.remove("rented");
@@ -81,10 +84,12 @@ public class MongoDB {
     }
     
     public Document query_builder(Listing listing) {
+    		log.info("IN QUERY_BUILDER: " + listing.getUrl());
     		Document doc = new Document();
 		
 		if(!listing.getProductName().isEmpty()) doc.append("product_Name", Pattern.compile(listing.getProductName(), Pattern.CASE_INSENSITIVE));
 		if(!listing.getDescription().isEmpty()) doc.append("description", Pattern.compile(listing.getDescription(), Pattern.CASE_INSENSITIVE));
+		if(listing.getUrl() != null) doc.append("url", listing.getUrl());
 		if(listing.getRented() != 2) doc.append("rented", listing.getRented());
 		if(listing.getCalendar() != null) doc.append("calendar", new Document("startDate", listing.getCalendar().getStartDate()).append("endDate", listing.getCalendar().getEndDate()));
 		if(listing.getCondition() != Condition.ANY) doc.append("condition", listing.getCondition().toString());
