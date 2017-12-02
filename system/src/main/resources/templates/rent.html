@@ -41,6 +41,7 @@
                         <input type="hidden" th:value="${listing.description}" th:attr="name='description'" />
                         <input type="hidden" th:value="${listing.condition}" th:attr="name='condition'" />
                         <input type='hidden' th:value="${listing.rented}" th:attr="name='rented'" />
+                        <input type='hidden' th:value="${listing.url}" th:attr="name='url'" />
 
                         <label for="startdate">Rental Start Date:</label>
                         <input style="text-align: center" id="startdate" type="date" th:field="*{calendar.startDate}" required>
