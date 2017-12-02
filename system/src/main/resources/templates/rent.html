@@ -32,9 +32,16 @@
                     <h4 class="card-title">
                         <p style="text-align: center" th:text="${listing.productName}" />
                     </h4>
-                    <form ACTION="#" th:action="@{/rentcheckout}" th:object="${listing}" method="POST">
-                        <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
-                        <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+                    <p style="text-align: center" th:text="'Description: ' + ${listing.description}" />
+                    <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+                    <p style="text-align: center" th:text="'Condition: ' + ${listing.condition}" />
+
+                    <form ACTION="#" th:action="@{/rentcheckout}" th:object="${newlisting}" method="POST">
+                        <input type="hidden" th:value="${listing.productName}" th:attr="name='productName'" />
+                        <input type="hidden" th:value="${listing.description}" th:attr="name='description'" />
+                        <input type="hidden" th:value="${listing.condition}" th:attr="name='condition'" />
+                        <input type='hidden' th:value="${listing.rented}" th:attr="name='rented'" />
+
                         <label for="startdate">Rental Start Date:</label>
                         <input style="text-align: center" id="startdate" type="date" th:field="*{calendar.startDate}" required>
                         <label for="enddate">Rental End Date:</label>
