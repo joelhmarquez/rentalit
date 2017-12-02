@@ -87,18 +87,15 @@ public class Listing {
 		this.currentState = newState;
 	}
 	
-	public void acceptRental(Calendar calendar) {
-		setCalendar(calendar);
+	public void acceptRental() {
 		this.currentState.acceptRental(this);
 	}
 	
-	public void RequestRental(Calendar calendar) {
-		setCalendar(calendar);
+	public void RequestRental() {
 		this.currentState.requestRental(this);
 	}
 	
-	public void ReturnRental(Calendar calendar) {
-		setCalendar(calendar);
+	public void ReturnRental() {
 		this.currentState.requestRental(this);
 	}
 }
