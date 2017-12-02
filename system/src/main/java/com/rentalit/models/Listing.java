@@ -27,47 +27,53 @@ public class Listing {
     public String getId() {
 		return this.id;
 	}
+    
+    public Calendar getCalendar() {
+		return calendar;
+	}
 
     public Condition getCondition() {
         return condition;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public String getProductName() {
+        return productName;
     }
 
     public Integer getRented() {
         return rented;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    @JsonProperty("product_Name")
-    public String getProductName() {
-        return productName;
-    }
     
-    public Calendar getCalendar() {
-		return calendar;
-	}
+    public String getUrl() {
+        return url;
+    }
 
     @JsonProperty("_id")
 	private void setId(Map<String, String> idObj) {
 	    this.id = idObj.get("$oid");
 	}
     
+    @JsonProperty("calendar")
+	public void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
+	}
+    
+    @JsonProperty("condition")
     public void setCondition(String condition) { this.condition = Condition.valueOf(condition);}
 
-
+    @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
     }
 
+    @JsonProperty("product_Name")
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    
-	public void setCalendar(Calendar calendar) {
-		this.calendar = calendar;
-	}
 	
     @JsonProperty("rented")
     public void setRented(Integer rented) {
@@ -79,10 +85,7 @@ public class Listing {
         }
     }
 
-    public String getUrl() {
-        return url;
-    }
-
+    @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
